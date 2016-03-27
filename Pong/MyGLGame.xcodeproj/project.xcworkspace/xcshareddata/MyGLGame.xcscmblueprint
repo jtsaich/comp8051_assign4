@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6F5A2A50C61F082296C57D1518E5A2F18EAFA884",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6F5A2A50C61F082296C57D1518E5A2F18EAFA884" : 0,
+    "F28C6AF6CE690B48C225652740B4874D678FC3BC" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E678F698-F163-4A59-ADFD-9FD043C6F187",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6F5A2A50C61F082296C57D1518E5A2F18EAFA884" : "Assignment%204\/",
+    "F28C6AF6CE690B48C225652740B4874D678FC3BC" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MyGLGame",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Pong\/MyGLGame.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tsai0606\/comp8051_assign4.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6F5A2A50C61F082296C57D1518E5A2F18EAFA884"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tsai0606\/comp8051_assign3.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F28C6AF6CE690B48C225652740B4874D678FC3BC"
+    }
+  ]
+}

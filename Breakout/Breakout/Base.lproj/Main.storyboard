@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--GLKit View Controller-->
@@ -16,10 +17,49 @@
                     <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="WNj-Tz-H5R">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gda-u9-edk">
+                                <rect key="frame" x="251" y="289" width="99" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Wqh-IH-yrX"/>
+                                    <constraint firstAttribute="width" constant="99" id="myW-eQ-Zda"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long Press Left/Right Side of the Screen To Move the Paddle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMb-V0-cSb">
+                                <rect key="frame" x="40" y="333" width="520" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="IQM-c2-d5D"/>
+                                    <constraint firstAttribute="width" constant="316" id="fjv-GU-XnO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="fjv-GU-XnO"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="LMb-V0-cSb" firstAttribute="leading" secondItem="WNj-Tz-H5R" secondAttribute="leadingMargin" constant="20" id="3Hk-Ya-PTe"/>
+                            <constraint firstItem="LMb-V0-cSb" firstAttribute="centerX" secondItem="WNj-Tz-H5R" secondAttribute="centerX" id="3au-Yu-odo"/>
+                            <constraint firstItem="J91-Uw-JYd" firstAttribute="top" secondItem="gda-u9-edk" secondAttribute="bottom" constant="290" id="4Pd-AT-ZFS"/>
+                            <constraint firstItem="gda-u9-edk" firstAttribute="centerX" secondItem="WNj-Tz-H5R" secondAttribute="centerX" id="IQl-Db-J9b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LMb-V0-cSb" secondAttribute="trailing" constant="20" id="gG1-pi-y7i"/>
+                            <constraint firstItem="LMb-V0-cSb" firstAttribute="top" secondItem="gda-u9-edk" secondAttribute="bottom" constant="23" id="uqz-4E-4Dh"/>
+                        </constraints>
                         <connections>
                             <outlet property="delegate" destination="1XN-IX-NHx" id="73z-YI-OJe"/>
                         </connections>
                     </glkView>
+                    <connections>
+                        <outlet property="instruction" destination="LMb-V0-cSb" id="h4b-ht-cEA"/>
+                        <outlet property="tapToStart" destination="gda-u9-edk" id="hls-9e-8UP"/>
+                    </connections>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6MO-i5-n9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

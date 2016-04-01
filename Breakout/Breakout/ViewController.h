@@ -10,7 +10,7 @@
 #import <GLKit/GLKit.h>
 
 @interface ViewController : GLKViewController
-
-
+@property (weak, nonatomic) IBOutlet UILabel *tapToStart;
+@property (weak, nonatomic) IBOutlet UILabel *instruction;
 @end
 

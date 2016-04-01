@@ -33,14 +33,12 @@ public:
     void PreSolve(b2Contact *contact, const b2Manifold *oldManifold) {
         b2WorldManifold worldManifold;
         contact->GetWorldManifold(&worldManifold);
-        b2PointState state1[2], state2[2];
+        b2PointState state2[2];
         b2GetPointStates(state2, state2, oldManifold, contact->GetManifold());
         if (state2[0] == b2_addState) {
             b2Body *bodyA = contact->GetFixtureA()->GetBody();
-            int i = 0;
-            CBox2D *parentObj = (__bridge CBox2D*)(bodyA->GetUserData());
-            
-            NSLog(@"HIT");
+            CBox2D *parentObj = (__bridge CBox2D *)(bodyA->GetUserData());
+            [parentObj registerHit:bodyA];
         }
     }
     void PostSolve(b2Contact *contact, const b2ContactImpulse *impulse) {};
@@ -81,14 +79,17 @@ public:
     BOOL _brickHit[BRICK_COUNT];
 }
 
+@property (strong, nonatomic) ViewController *viewController;
+
 @end
 
 @implementation CBox2D
 
-- (id)init:(UIView *)view {
+- (id)init:(ViewController *)viewController {
     if (self = [super init]) {
-        _width = view.frame.size.width;
-        _height = view.frame.size.height;
+        self.viewController = viewController;
+        _width = viewController.view.frame.size.width;
+        _height = viewController.view.frame.size.height;
         _paddlePosition = b2Vec2(_width / 2, 50);
         _ballPosition = b2Vec2(_width / 2, 150);
         
@@ -97,7 +98,6 @@ public:
         
         _contactListener = new CContactListener();
         _world->SetContactListener(_contactListener);
-        
         [self initBoundaries];
         [self initPaddle];
         [self initBall];
@@ -106,6 +106,18 @@ public:
     
     
     return self;
+}
+
+- (void)reset {
+    [self.viewController.tapToStart setHidden:NO];
+    
+    _thePaddle->SetTransform(_paddlePosition, 0);
+    _theBall->SetTransform(_ballPosition, 0);
+    _theBall->SetLinearVelocity(b2Vec2_zero);
+    for (int i = 0; i < BRICK_COUNT; i++) {
+        _bricks[i]->SetActive(true);
+        _brickHit[i] = NO;
+    }
 }
 
 - (void)initBoundaries {
@@ -356,6 +368,13 @@ public:
         modelViewMatrix = GLKMatrix4MakeTranslation(_bricks[i]->GetPosition().x, _bricks[i]->GetPosition().y, 0);
         _brickModelViewProjectionMatrix[i] = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
         
+        if (_brickHit[i]) {
+            _bricks[i]->SetActive(false);
+        }
+    }
+    
+    if (_theBall->GetPosition().y < -10) {
+        [self reset];
     }
 }
 
@@ -377,8 +396,17 @@ public:
     for (int i = 0; i < BRICK_COUNT; i++) {
         glUniformMatrix4fv(modelViewProjectionMatrixPtr, 1, 0, _brickModelViewProjectionMatrix[i].m);
         glBindVertexArrayOES(brickVertexArray);
-        if (_bricks[i] && sizeof(_brickVertexData) > 0)
+        if (_bricks[i] && !_brickHit[i] && sizeof(_brickVertexData) > 0)
             glDrawArrays(GL_TRIANGLES, 0, sizeof(_brickVertexData) / sizeof(GLfloat) / 3);
+    }
+}
+
+- (void)registerHit:(void *)obj {
+    b2Body *body = (b2Body *)obj;
+    for (int i = 0; i < BRICK_COUNT; i++) {
+        if (_bricks[i] == body) {
+            _brickHit[i] = true;
+        }
     }
 }
 
@@ -386,6 +414,8 @@ public:
     if (_theBall->GetLinearVelocity().y == 0) {
         _theBall->SetActive(true);
         _theBall->SetLinearVelocity(b2Vec2(0, -200));
+        [self.viewController.tapToStart setHidden:YES];
+        [self.viewController.instruction setHidden:YES];
     }
 }
 

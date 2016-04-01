@@ -11,12 +11,14 @@
 
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
+#include "ViewController.h"
 
 @interface CBox2D : NSObject
 
--(id)init:(UIView *)view;
+-(id)init:(ViewController *)viewController;
 -(void)update:(float)dt;
 -(void)render:(int)modelViewProjectionMatrixPtr;
+-(void)registerHit:(void *)obj;
 -(void)handleTapFrom:(UITapGestureRecognizer *)recognizer;
 -(void)handleLongPressFrom:(UILongPressGestureRecognizer *)recognizer;
 

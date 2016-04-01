@@ -106,7 +106,7 @@ GLfloat gCubeVertexData[216] =
     
     [self setupGL];
     
-    _box2d = [[CBox2D alloc] init:self.view];
+    _box2d = [[CBox2D alloc] init:self];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:_box2d action:@selector(handleTapFrom:)];
     [self.view addGestureRecognizer:tapRecognizer];
     
